@@ -51,3 +51,10 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(2)(448be658-9ed6-4730-9efc-7ca3552ed71b)'
+    appType: 'webApp'
+    WebAppName: 
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
