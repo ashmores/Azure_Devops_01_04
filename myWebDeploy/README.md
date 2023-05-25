@@ -9,3 +9,4 @@ This is a starter template for deploying a linux web app with deployment slots f
 <br/>
 <img src="LinuxWebAppWithSlots.png" style="width:500px;background-color:black;border-color:navy;border:1px;" class="img img-responsive" />
 
+ 
