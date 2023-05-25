@@ -19,6 +19,20 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
+- task: replacetokens@5
+  inputs:
+    targetFiles: '**/*.config'
+    encoding: 'auto'
+    tokenPattern: 'default'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: false
+    actionOnNoFiles: 'continue'
+    enableTransforms: false
+    enableRecursion: false
+    useLegacyPattern: false
+    enableTelemetry: true
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
