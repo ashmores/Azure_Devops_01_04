@@ -58,6 +58,8 @@ stages:
 - stage: TestDeployment
   jobs:
   - job: PublishTheCode
+    variables:
+    - group: myYAML-Demos
     steps:
 
     - task: DownloadBuildArtifacts@0
@@ -70,8 +72,8 @@ stages:
     - task: AzureResourceManagerTemplateDeployment@3
       inputs:
         deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: '[REPLACE WITH YOUR AZURE SUBSCRIPTION]'
-        subscriptionId: '[YOUR AZURE SUBSCRIPTION ID]'
+        azureResourceManagerConnection: '$(AzSPN)'
+        subscriptionId: '$(AzSubId)'
         action: 'Create Or Update Resource Group'
         resourceGroupName: 'lz-yaml'
         location: 'Central US'
@@ -84,7 +86,7 @@ stages:
     - task: AzureRmWebAppDeployment@4
       inputs:
         ConnectionType: 'AzureRM'
-        azureSubscription: '[REPLACE WITH YOUR AZURE SUBSCRIPTION]'
+        azureSubscription: '$(AzSPN)'
         appType: 'webApp'
         WebAppName: 'bnkYAML'
         packageForLinux: '$(System.ArtifactsDirectory)/**/*.zip'
